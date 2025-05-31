@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkApplicationWindow" id="main_window">
+    <property name="title">Gestor de Estructuras de Datos</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property><!-- Barra superior -->
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">5</property>
+            <style>
+              <class name="titlebar"/>
+            </style>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Gestor de Estructuras de Datos</property>
+                <property name="hexpand">true</property>
+                <property name="xalign">0</property>
+                <style>
+                  <class name="title"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">window-close-symbolic</property>
+                  </object>
+                </child>
+                <signal name="clicked" handler="gtk_window_close" object="main_window" swapped="no"/>
+              </object>
+            </child>
+          </object>
+        </child><!-- Contenido principal -->
+        <child>
+          <object class="GtkPaned">
+            <property name="orientation">horizontal</property>
+            <property name="position">250</property><!-- Panel izquierdo -->
+            <child>
+              <object class="GtkFrame">
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-top">5</property>
+                <property name="margin-bottom">5</property><!-- Quitar propiedad 'label', se debe usar 'label-widget' si deseas título -->
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <child>
+                      <object class="GtkDropDown" id="structure_type_combo">
+                        <property name="model">
+                          <object class="GtkStringList">
+                            <items>
+                              <item>Pila</item>
+                              <item>Cola</item>
+                              <item>Cola Circular</item>
+                              <item>Bicola</item>
+                              <item>Lista simplemente ligada</item>
+                              <item>Lista simplemente ligada circular</item>
+                              <item>Lista doblemente ligada</item>
+                              <item>Lista doblemente ligada circular</item>
+                            </items>
+                          </object>
+                        </property>
+                        <property name="selected">0</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="add_structure_btn">
+                        <property name="label">Agregar Estructura</property>
+                        <property name="halign">fill</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">true</property>
+                        <child><!-- NOTA: GtkColumnView necesita modelo y columnas creadas desde el código -->
+                          <object class="GtkColumnView" id="structures_list"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="remove_structure_btn">
+                        <property name="label">Eliminar Estructura</property>
+                        <property name="halign">fill</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child><!-- Panel derecho -->
+            <child>
+              <object class="GtkFrame" id="operations_frame">
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-top">5</property>
+                <property name="margin-bottom">5</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <child>
+                      <object class="GtkLabel" id="selected_structure_label">
+                        <property name="label">Seleccione una estructura</property>
+                        <property name="xalign">0</property>
+                        <property name="wrap">true</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="data_entry">
+                        <property name="placeholder-text">Dato a insertar/eliminar</property>
+                        <property name="halign">fill</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="position_entry">
+                        <property name="placeholder-text">Posición donde insertar/eliminar</property>
+                        <property name="halign">fill</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkButton" id="push_btn">
+                            <property name="label">Push</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="pop_btn">
+                            <property name="label">Pop</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="enqueue_btn">
+                            <property name="label">Enqueue</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="dequeue_btn">
+                            <property name="label">Dequeue</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkButton" id="insert_front_btn">
+                            <property name="label">Insertar al frente</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="insert_end_btn">
+                            <property name="label">Insertar al final</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="insert_at_position_btn">
+                            <property name="label">Insertar en posición</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child><!-- Nuevas operaciones para listas -->
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkButton" id="remove_front_btn">
+                            <property name="label">Eliminar frente</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="remove_end_btn">
+                            <property name="label">Eliminar final</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="remove_at_position_btn">
+                            <property name="label">Eliminar por posición</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="remove_by_data_btn">
+                            <property name="label">Eliminar por dato</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>                        
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkButton" id="search_by_data_btn">
+                            <property name="label">Buscar por dato</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="search_at_position_btn">
+                            <property name="label">Buscar por posición</property>
+                            <property name="sensitive">false</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkDrawingArea" id="drawing_area">
+                        <property name="hexpand">1</property>
+                        <property name="vexpand">1</property>
+                        <property name="width-request">600</property>
+                        <property name="height-request">400</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">true</property>
+                        <child>
+                          <object class="GtkTextView" id="structure_content_view">
+                            <property name="editable">false</property>
+                            <property name="cursor-visible">false</property>
+                            <property name="monospace">true</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="status_label">
+                        <property name="xalign">0</property>
+                        <property name="yalign">1</property>
+                        <property name="wrap">true</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
