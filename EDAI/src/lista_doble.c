@@ -128,7 +128,7 @@ int buscar_atras(ListaDoble* lista, int dato) {
 }
 
 // Obtener el tamaño de la lista
-int obtener_tamaño(ListaDoble* lista) {
+int obtener_tam(ListaDoble* lista) {
     return lista->tam;
 }
 
