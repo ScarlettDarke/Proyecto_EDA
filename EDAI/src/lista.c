@@ -100,7 +100,7 @@ int buscar(Lista* lista, int dato) {
 }
 
 // Obtener el tamaño de la lista
-int obtener_tamaño(Lista* lista) {
+int obtener_tam(Lista* lista) {
     return lista->tam;
 }
 
