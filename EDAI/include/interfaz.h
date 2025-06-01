@@ -8,7 +8,14 @@
 #include <stdlib.h>
 // TODO: Aquí se debe incluir el archivo en donde se define la estructura lista ligada
 // TODO: Aquí se debe incluir el archivo en donde se define la estructura doblemente ligada
-
+#include "cola_circular.h"
+#include "cola_lista.h"
+#include "deque.h"
+#include "lista_circular.h"
+#include "lista_doble_circular.h"
+#include "lista_doble.h"
+#include "list.h"
+#include "pila_lista.h"
 #define NUM_STRUCTURE_TYPES 8
 
 
