@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar GTK",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "$(pkg-config --cflags gtk4)",  // GTK 4 (o gtk+-3.0 para GTK 3)
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "$(pkg-config --libs gtk4)"    // Enlaza librerías
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
