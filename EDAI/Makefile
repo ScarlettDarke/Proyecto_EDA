@@ -7,12 +7,12 @@
 CC = gcc
 
 # define any compile-time flags
-CFLAGS	:=  -Wall -g `pkg-config --cflags gtk4`
+CFLAGS := -Wall -g $(shell pkg-config --cflags gtk4)
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
 #   their path using -Lpath, something like:
-LFLAGS = `pkg-config --libs gtk4`
+LFLAGS := $(shell pkg-config --libs gtk4)
 
 # define output directory
 OUTPUT	:= output
@@ -32,15 +32,15 @@ SOURCEDIRS	:= $(SRC)
 INCLUDEDIRS	:= $(INCLUDE)
 LIBDIRS		:= $(LIB)
 FIXPATH = $(subst /,\,$1)
-RM			:= del /q /f
-MD	:= mkdir
+RM			:= rm -f
+MD	:= mkdir -p
 else
 MAIN	:= main
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
 INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
 LIBDIRS		:= $(shell find $(LIB) -type d)
 FIXPATH = $1
-RM = rm -f
+RM := rm -f
 MD	:= mkdir -p
 endif
 
@@ -73,7 +73,7 @@ all: $(OUTPUT) $(MAIN)
 $(OUTPUT):
 	$(MD) $(OUTPUT)
 
-$(MAIN): $(OBJECTS) 
+$(MAIN): $(OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(OUTPUTMAIN) $(OBJECTS) $(LFLAGS) $(LIBS)
 
 # include all .d files
@@ -85,8 +85,7 @@ $(MAIN): $(OBJECTS)
 # -MMD generates dependency output files same name as the .o file
 # (see the gnu make manual section about automatic variables)
 .c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c -MMD $<  -o $@
-
+	$(CC) $(CFLAGS) $(INCLUDES) -c -MMD $< -o $@
 .PHONY: clean
 clean:
 	$(RM) $(OUTPUTMAIN)
