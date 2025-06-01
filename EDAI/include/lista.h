@@ -8,7 +8,7 @@ typedef struct Nodo {
 
 typedef struct Lista {
     Nodo* cabeza;
-    int tamaño;
+    int tam;
 } Lista;
 
 // Funciones para operaciones básicas de la lista
@@ -18,7 +18,7 @@ void insertar_inicio(Lista* lista, int dato);
 void insertar_final(Lista* lista, int dato);
 void eliminar_elemento(Lista* lista, int dato);
 int buscar(Lista* lista, int dato);
-int obtener_tamaño(Lista* lista);
+int obtener_tam(Lista* lista);
 void imprimir_lista(Lista* lista);
 
 #endif 

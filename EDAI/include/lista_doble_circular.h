@@ -9,7 +9,7 @@ typedef struct NodoDobleCircular {
 
 typedef struct {
     NodoDobleCircular* cabeza;
-    int tamaño;
+    int tam;
 } ListaDobleCircular;
 
 // Funciones básicas

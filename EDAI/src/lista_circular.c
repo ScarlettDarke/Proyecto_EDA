@@ -10,7 +10,7 @@ ListaCircular* crear_lista_circular() {
         exit(EXIT_FAILURE);
     }
     lc->cabeza = NULL;
-    lc->tamaño = 0;
+    lc->tam = 0;
     return lc;
 }
 
@@ -53,7 +53,7 @@ void insertar_inicio_lista_circular(ListaCircular* lc, int dato) {
         lc->cabeza = nuevo;
     }
     
-    lc->tamaño++;
+    lc->tam++;
 }
 
 // Insertar elemento al final de la lista
@@ -75,7 +75,7 @@ void insertar_final_lista_circular(ListaCircular* lc, int dato) {
     lc->cabeza->anterior->siguiente = nuevo;
     lc->cabeza->anterior = nuevo;
     
-    lc->tamaño++;
+    lc->tam++;
 }
 
 // Eliminar y devolver el elemento del inicio
@@ -88,7 +88,7 @@ int eliminar_inicio_lista_circular(ListaCircular* lc) {
     int dato = lc->cabeza->dato;
     NodoCircular* temp = lc->cabeza;
     
-    if (lc->tamaño == 1) {
+    if (lc->tam == 1) {
         lc->cabeza = NULL;
     } else {
         lc->cabeza->anterior->siguiente = lc->cabeza->siguiente;
@@ -97,7 +97,7 @@ int eliminar_inicio_lista_circular(ListaCircular* lc) {
     }
     
     free(temp);
-    lc->tamaño--;
+    lc->tam--;
     return dato;
 }
 
@@ -108,7 +108,7 @@ int eliminar_final_lista_circular(ListaCircular* lc) {
         exit(EXIT_FAILURE);
     }
     
-    if (lc->tamaño == 1) {
+    if (lc->tam == 1) {
         return eliminar_inicio_lista_circular(lc);
     }
     
@@ -119,7 +119,7 @@ int eliminar_final_lista_circular(ListaCircular* lc) {
     lc->cabeza->anterior = temp->anterior;
     
     free(temp);
-    lc->tamaño--;
+    lc->tam--;
     return dato;
 }
 
@@ -147,7 +147,7 @@ int esta_vacia_lista_circular(ListaCircular* lc) {
 
 // Obtener el número de elementos en la lista
 int tamanio_lista_circular(ListaCircular* lc) {
-    return lc->tamaño;
+    return lc->tam;
 }
 
 // Imprimir la lista hacia adelante

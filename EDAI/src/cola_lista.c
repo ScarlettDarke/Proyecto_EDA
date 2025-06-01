@@ -10,7 +10,7 @@ ColaLista* crear_cola_lista() {
     }
     q->frente = NULL;
     q->final = NULL;
-    q->tamaño = 0;
+    q->tam = 0;
     return q;
 }
 
@@ -38,7 +38,7 @@ void encolar_lista(ColaLista *q, int elemento) {
     }
     
     q->final = nuevo;
-    q->tamaño++;
+    q->tam++;
 }
 
 int desencolar_lista(ColaLista *q) {
@@ -56,7 +56,7 @@ int desencolar_lista(ColaLista *q) {
     }
     
     free(temp);
-    q->tamaño--;
+    q->tam--;
     return dato;
 }
 
@@ -73,5 +73,5 @@ int esta_vacia_lista(ColaLista *q) {
 }
 
 int tamanio_lista(ColaLista *q) {
-    return q->tamaño;
+    return q->tam;
 }

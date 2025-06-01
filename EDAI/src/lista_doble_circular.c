@@ -10,7 +10,7 @@ ListaDobleCircular* crear_lista_doble_circular() {
         exit(EXIT_FAILURE);
     }
     ldc->cabeza = NULL;
-    ldc->tamaño = 0;
+    ldc->tam = 0;
     return ldc;
 }
 
@@ -53,7 +53,7 @@ void insertar_inicio_doble_circular(ListaDobleCircular* ldc, int dato) {
         ldc->cabeza = nuevo;
     }
     
-    ldc->tamaño++;
+    ldc->tam++;
 }
 
 // Insertar elemento al final de la lista
@@ -75,7 +75,7 @@ void insertar_final_doble_circular(ListaDobleCircular* ldc, int dato) {
     ldc->cabeza->anterior->siguiente = nuevo;
     ldc->cabeza->anterior = nuevo;
     
-    ldc->tamaño++;
+    ldc->tam++;
 }
 
 // Eliminar y devolver el elemento del inicio
@@ -88,7 +88,7 @@ int eliminar_inicio_doble_circular(ListaDobleCircular* ldc) {
     int dato = ldc->cabeza->dato;
     NodoDobleCircular* temp = ldc->cabeza;
     
-    if (ldc->tamaño == 1) {
+    if (ldc->tam == 1) {
         ldc->cabeza = NULL;
     } else {
         ldc->cabeza->anterior->siguiente = ldc->cabeza->siguiente;
@@ -97,7 +97,7 @@ int eliminar_inicio_doble_circular(ListaDobleCircular* ldc) {
     }
     
     free(temp);
-    ldc->tamaño--;
+    ldc->tam--;
     return dato;
 }
 
@@ -108,7 +108,7 @@ int eliminar_final_doble_circular(ListaDobleCircular* ldc) {
         exit(EXIT_FAILURE);
     }
     
-    if (ldc->tamaño == 1) {
+    if (ldc->tam == 1) {
         return eliminar_inicio_doble_circular(ldc);
     }
     
@@ -119,7 +119,7 @@ int eliminar_final_doble_circular(ListaDobleCircular* ldc) {
     ldc->cabeza->anterior = temp->anterior;
     
     free(temp);
-    ldc->tamaño--;
+    ldc->tam--;
     return dato;
 }
 
@@ -147,7 +147,7 @@ int esta_vacia_doble_circular(ListaDobleCircular* ldc) {
 
 // Obtener el tamaño de la lista
 int tamanio_doble_circular(ListaDobleCircular* ldc) {
-    return ldc->tamaño;
+    return ldc->tam;
 }
 
 // Imprimir la lista hacia adelante

@@ -1,5 +1,7 @@
 // TODO: Agregar el #ifndef
+#ifndef INTERFAZ_H_
 // TODO: Agregar el #define
+#define INTERFAZ_H_
 #include <gtk/gtk.h>
 #include <string.h>
 #include <stdio.h>
@@ -45,3 +47,4 @@ void application_activate(GtkApplication *app, gpointer user_data) ;
 
 
 // TODO(3): Cerrar el #ifndef
+#endif

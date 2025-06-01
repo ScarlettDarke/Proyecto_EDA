@@ -10,7 +10,7 @@ typedef struct Nodo {
 typedef struct ListaDoble {
     Nodo* cabeza;
     Nodo* cola;
-    int tamaño;
+    int tam;
 } ListaDoble;
 
 // Funciones para operaciones básicas de la lista
@@ -21,7 +21,7 @@ void insertar_final(ListaDoble* lista, int dato);
 void eliminar_elemento(ListaDoble* lista, int dato);
 int buscar_adelante(ListaDoble* lista, int dato);
 int buscar_atras(ListaDoble* lista, int dato);
-int obtener_tamaño(ListaDoble* lista);
+int obtener_tam(ListaDoble* lista);
 void imprimir_adelante(ListaDoble* lista);
 void imprimir_atras(ListaDoble* lista);
 

@@ -11,7 +11,7 @@ ListaDoble* crear_lista_doble() {
     }
     lista->cabeza = NULL;
     lista->cola = NULL;
-    lista->tamaño = 0;
+    lista->tam = 0;
     return lista;
 }
 
@@ -46,7 +46,7 @@ void insertar_inicio(ListaDoble* lista, int dato) {
     }
     
     lista->cabeza = nuevo_nodo;
-    lista->tamaño++;
+    lista->tam++;
 }
 
 // Insertar un elemento al final de la lista
@@ -69,7 +69,7 @@ void insertar_final(ListaDoble* lista, int dato) {
     }
     
     lista->cola = nuevo_nodo;
-    lista->tamaño++;
+    lista->tam++;
 }
 
 // Eliminar un elemento de la lista
@@ -100,7 +100,7 @@ void eliminar_elemento(ListaDoble* lista, int dato) {
     }
     
     free(actual);
-    lista->tamaño--;
+    lista->tam--;
 }
 
 // Buscar un elemento desde el inicio
@@ -129,7 +129,7 @@ int buscar_atras(ListaDoble* lista, int dato) {
 
 // Obtener el tamaño de la lista
 int obtener_tamaño(ListaDoble* lista) {
-    return lista->tamaño;
+    return lista->tam;
 }
 
 // Imprimir la lista desde el inicio

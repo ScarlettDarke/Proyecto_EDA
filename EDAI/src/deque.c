@@ -11,7 +11,7 @@ Deque* crear_deque() {
     }
     dq->frente = NULL;
     dq->final = NULL;
-    dq->tamaño = 0;
+    dq->tam = 0;
     return dq;
 }
 
@@ -42,7 +42,7 @@ void insertar_frente(Deque* dq, int dato) {
     }
     
     dq->frente = nuevo;
-    dq->tamaño++;
+    dq->tam++;
 }
 
 // Eliminar elemento por el frente
@@ -63,7 +63,7 @@ int eliminar_frente(Deque* dq) {
     }
     
     free(temp);
-    dq->tamaño--;
+    dq->tam--;
     return dato;
 }
 
@@ -95,7 +95,7 @@ void insertar_final(Deque* dq, int dato) {
     }
     
     dq->final = nuevo;
-    dq->tamaño++;
+    dq->tam++;
 }
 
 // Eliminar elemento por el final
@@ -116,7 +116,7 @@ int eliminar_final(Deque* dq) {
     }
     
     free(temp);
-    dq->tamaño--;
+    dq->tam--;
     return dato;
 }
 
@@ -136,7 +136,7 @@ int esta_vacia(Deque* dq) {
 
 // Obtener el tamaño de la deque
 int tamanio_deque(Deque* dq) {
-    return dq->tamaño;
+    return dq->tam;
 }
 
 // Imprimir todos los elementos de la deque

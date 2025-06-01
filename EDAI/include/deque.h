@@ -10,7 +10,7 @@ typedef struct NodoDeque {
 typedef struct {
     NodoDeque* frente;
     NodoDeque* final;
-    int tamaño;
+    int tam;
 } Deque;
 
 // Funciones básicas

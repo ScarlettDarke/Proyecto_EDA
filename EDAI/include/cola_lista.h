@@ -9,7 +9,7 @@ typedef struct NodoCola {
 typedef struct {
     NodoCola* frente;
     NodoCola* final;
-    int tamaño;
+    int tam;
 } ColaLista;
 
 ColaLista* crear_cola_lista();

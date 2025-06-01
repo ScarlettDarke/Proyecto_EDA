@@ -10,7 +10,7 @@ Lista* crear_lista() {
         exit(EXIT_FAILURE);
     }
     lista->cabeza = NULL;
-    lista->tamaño = 0;
+    lista->tam = 0;
     return lista;
 }
 
@@ -36,7 +36,7 @@ void insertar_inicio(Lista* lista, int dato) {
     nuevo_nodo->dato = dato;
     nuevo_nodo->siguiente = lista->cabeza;
     lista->cabeza = nuevo_nodo;
-    lista->tamaño++;
+    lista->tam++;
 }
 
 // Insertar un elemento al final de la lista
@@ -59,7 +59,7 @@ void insertar_final(Lista* lista, int dato) {
         }
         actual->siguiente = nuevo_nodo;
     }
-    lista->tamaño++;
+    lista->tam++;
 }
 
 // Eliminar un elemento de la lista
@@ -84,7 +84,7 @@ void eliminar_elemento(Lista* lista, int dato) {
     }
     
     free(actual);
-    lista->tamaño--;
+    lista->tam--;
 }
 
 // Buscar un elemento en la lista
@@ -101,7 +101,7 @@ int buscar(Lista* lista, int dato) {
 
 // Obtener el tamaño de la lista
 int obtener_tamaño(Lista* lista) {
-    return lista->tamaño;
+    return lista->tam;
 }
 
 // Imprimir los elementos de la lista

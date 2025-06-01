@@ -20,7 +20,7 @@ ColaCircular* crear_cola_circular() {
     cc->capacidad = CAPACIDAD_INICIAL;
     cc->frente = 0;
     cc->final = -1;
-    cc->tamaño = 0;
+    cc->tam = 0;
     return cc;
 }
 
@@ -38,7 +38,7 @@ void encolar_circular(ColaCircular *cc, int dato) {
     
     cc->final = (cc->final + 1) % cc->capacidad;
     cc->elementos[cc->final] = dato;
-    cc->tamaño++;
+    cc->tam++;
 }
 
 // Eliminar y devolver el elemento del frente
@@ -50,10 +50,10 @@ int desencolar_circular(ColaCircular *cc) {
     
     int dato = cc->elementos[cc->frente];
     cc->frente = (cc->frente + 1) % cc->capacidad;
-    cc->tamaño--;
+    cc->tam--;
     
     // Reducir capacidad si hay mucha capacidad no utilizada
-    if (cc->tamaño < cc->capacidad / 4 && cc->capacidad > CAPACIDAD_INICIAL) {
+    if (cc->tam < cc->capacidad / 4 && cc->capacidad > CAPACIDAD_INICIAL) {
         redimensionar_cola_circular(cc, cc->capacidad / 2);
     }
     
@@ -71,17 +71,17 @@ int frente_cola_circular(ColaCircular *cc) {
 
 // Verificar si la cola está vacía
 int esta_vacia_cola_circular(ColaCircular *cc) {
-    return cc->tamaño == 0;
+    return cc->tam == 0;
 }
 
 // Verificar si la cola está llena
 int esta_llena_cola_circular(ColaCircular *cc) {
-    return cc->tamaño == cc->capacidad;
+    return cc->tam == cc->capacidad;
 }
 
 // Obtener el número de elementos en la cola
 int tamanio_cola_circular(ColaCircular *cc) {
-    return cc->tamaño;
+    return cc->tam;
 }
 
 // Redimensionar el arreglo interno
@@ -93,21 +93,21 @@ void redimensionar_cola_circular(ColaCircular *cc, int nueva_capacidad) {
     }
     
     // Copiar elementos al nuevo arreglo manteniendo el orden
-    for (int i = 0; i < cc->tamaño; i++) {
+    for (int i = 0; i < cc->tam; i++) {
         nuevos_elementos[i] = cc->elementos[(cc->frente + i) % cc->capacidad];
     }
     
     free(cc->elementos);
     cc->elementos = nuevos_elementos;
     cc->frente = 0;
-    cc->final = cc->tamaño - 1;
+    cc->final = cc->tam - 1;
     cc->capacidad = nueva_capacidad;
 }
 
 // Imprimir todos los elementos de la cola circular
 void imprimir_cola_circular(ColaCircular *cc) {
     printf("Cola Circular [ ");
-    for (int i = 0; i < cc->tamaño; i++) {
+    for (int i = 0; i < cc->tam; i++) {
         printf("%d ", cc->elementos[(cc->frente + i) % cc->capacidad]);
     }
     printf("] (Capacidad: %d)\n", cc->capacidad);

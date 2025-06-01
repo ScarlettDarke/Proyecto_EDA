@@ -8,7 +8,7 @@ typedef struct {
     int capacidad;
     int frente;
     int final;
-    int tamaño;
+    int tam;
 } ColaCircular;
 
 // Funciones básicas
