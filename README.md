@@ -1,1 +1,1 @@
-cualquier cosa duda o aclaracion por mensaje :)
+interfaz grafica de las funciones de estructuras lineales
